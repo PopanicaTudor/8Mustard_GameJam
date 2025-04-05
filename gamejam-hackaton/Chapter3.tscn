@@ -8620,7 +8620,7 @@ tile_map_data = PackedByteArray("AAAIAAAAAAAaAAcAAAAIAAEAAAAaAAgAAAAIAAIAAAAaAAk
 tile_set = SubResource("TileSet_mffuv")
 
 [node name="player" parent="." instance=ExtResource("2_86xor")]
-position = Vector2(50, 30)
+position = Vector2(-25, 22)
 scale = Vector2(0.8, 0.8)
 collision_layer = 3
 script = ExtResource("3_86xor")

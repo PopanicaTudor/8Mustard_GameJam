@@ -1,0 +1,15 @@
+[gd_scene load_steps=4 format=3 uid="uid://cka5scgckkrwf"]
+
+[ext_resource type="Script" uid="uid://dj8tjy4ydm6v" path="res://TransitionScenes/level_1_reset.gd" id="1_hebad"]
+[ext_resource type="PackedScene" uid="uid://bg1v61wnd5ucd" path="res://chapter_1.tscn" id="2_5xjtl"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_jx10y"]
+size = Vector2(2995, 537)
+
+[node name="level1reset" type="Area2D"]
+script = ExtResource("1_hebad")
+next_level_scene = ExtResource("2_5xjtl")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(-539.5, 12)
+shape = SubResource("RectangleShape2D_jx10y")

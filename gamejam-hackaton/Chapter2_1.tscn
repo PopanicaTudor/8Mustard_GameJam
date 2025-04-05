@@ -1,9 +1,13 @@
-[gd_scene load_steps=10 format=4 uid="uid://cthvnnwh7xwc0"]
+[gd_scene load_steps=14 format=4 uid="uid://cthvnnwh7xwc0"]
 
 [ext_resource type="Texture2D" uid="uid://dcy3oxp3ehvt" path="res://Assets/PALands_SET1_v1.01/32x32/_PNG/32x32_buildings_basement.png" id="1_0hcp0"]
 [ext_resource type="Texture2D" uid="uid://jhggom33js7i" path="res://Assets/PALands_SET1_v1.01/32x32/_PNG/32x32_buildings_floors.png" id="2_cb2ok"]
 [ext_resource type="Texture2D" uid="uid://ceht62ipnbih0" path="res://Assets/PALands_SET1_v1.01/32x32/_PNG/32x32_dec_props.png" id="3_2ch6b"]
 [ext_resource type="Texture2D" uid="uid://b1mmeul5dplut" path="res://Assets/PALands_SET1_v1.01/32x32/_PNG/32x32_buildings_furnitures.png" id="4_8eaqx"]
+[ext_resource type="PackedScene" uid="uid://cr2p3hp70vd7p" path="res://player.tscn" id="5_cb2ok"]
+[ext_resource type="PackedScene" uid="uid://c0sa3iiygpww7" path="res://TransitionScenes/LevelTransition.tscn" id="6_a8nvi"]
+[ext_resource type="Script" uid="uid://booaoaf20wdom" path="res://TransitionScenes/LevelTransition.gd" id="7_8s7vq"]
+[ext_resource type="PackedScene" uid="uid://b2x8iofcmkut5" path="res://chapter_3_1.tscn" id="8_a8nvi"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_a8nvi"]
 texture = ExtResource("1_0hcp0")
@@ -9833,3 +9837,11 @@ visible = false
 
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="StaticBody2D"]
 polygon = PackedVector2Array(-274, 175, 62, 175, 63, 304, 673, 306, 675, -72, 559, -74, 557, 43, 326, 44, 323, -116, 308, -118, 311, -86, 269, -83, 265, -112, 244, -110, 241, -68, 178, -71, 177, -112, 157, -112, 152, -54, -23, -55, -32, -53, -28, 24, 24, 19, 28, 72, 9, 78, 8, 93, -19, 93, -19, 74, -26, 74, -24, 53, -24, 41, -46, 31, -49, -92, -79, -72, -132, -67, -168, -84, -184, -85, -194, -71, -233, -68, -246, -84, -257, -76, -267, -68, -251, -56, -250, -41, -300, -33, -319, -43, -341, -43, -352, -59, -310, -59, -281, -79, -252, -91, -251, -127, -417, -131, -418, 35, -276, 37, -277, 53, -415, 55, -414, 94, -436, 92, -434, 129, -620, 130, -623, 235, -332, 235, -326, 257, -283, 255, -270, 252, -273, 182, -227, 212, -243, 318, -644, 311, -651, 142, -655, 41, -587, -121, -414, -222, -274, -225, -31, -211, 197, -194, 408, -177, 738, -117, 798, 226, 733, 447, 160, 423, -111, 353, -208, 194)
+
+[node name="Player" parent="." instance=ExtResource("5_cb2ok")]
+position = Vector2(535, 69)
+
+[node name="to_hallway" parent="." instance=ExtResource("6_a8nvi")]
+position = Vector2(-591, 199)
+script = ExtResource("7_8s7vq")
+next_level_scene = ExtResource("8_a8nvi")

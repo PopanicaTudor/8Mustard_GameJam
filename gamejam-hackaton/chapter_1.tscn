@@ -1,10 +1,13 @@
-[gd_scene load_steps=10 format=3 uid="uid://bg1v61wnd5ucd"]
+[gd_scene load_steps=14 format=3 uid="uid://bg1v61wnd5ucd"]
 
 [ext_resource type="Script" uid="uid://4jtxbdxfla80" path="res://chapter_1.gd" id="1_7doo8"]
 [ext_resource type="Texture2D" uid="uid://mead32t4s1oh" path="res://Assets/PALands_SET2_v1.0/32x32/_PNG/32x32_main_lev.png" id="1_8o7lh"]
 [ext_resource type="TileSet" uid="uid://db7eua2moqumv" path="res://Assets/TileSets/obstacles_tileset.tres" id="2_345w4"]
 [ext_resource type="Texture2D" uid="uid://blo8xxwcsrgif" path="res://Assets/PALands_SET2_v1.0/32x32/_PNG/32x32_dec_props.png" id="3_7doo8"]
 [ext_resource type="PackedScene" uid="uid://cr2p3hp70vd7p" path="res://player.tscn" id="4_345w4"]
+[ext_resource type="PackedScene" uid="uid://c0sa3iiygpww7" path="res://TransitionScenes/LevelTransition.tscn" id="6_3ulw2"]
+[ext_resource type="Script" uid="uid://booaoaf20wdom" path="res://TransitionScenes/LevelTransition.gd" id="7_qve2g"]
+[ext_resource type="PackedScene" uid="uid://bfyshx5aa1y7e" path="res://Chapter2.tscn" id="8_ljw6j"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_l6s8g"]
 texture = ExtResource("1_8o7lh")
@@ -8011,7 +8014,11 @@ texture = ExtResource("3_7doo8")
 [sub_resource type="TileSet" id="TileSet_qve2g"]
 sources/2 = SubResource("TileSetAtlasSource_3ulw2")
 
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_3ulw2"]
+size = Vector2(792.5, 6343)
+
 [node name="Chapter1" type="Node2D"]
+position = Vector2(584, 344)
 script = ExtResource("1_7doo8")
 
 [node name="TileMapGround" type="TileMapLayer" parent="."]
@@ -8023,7 +8030,16 @@ tile_set = ExtResource("2_345w4")
 [node name="TileMapProps" type="TileMapLayer" parent="."]
 tile_set = SubResource("TileSet_qve2g")
 
-[node name="andubadescu" parent="." instance=ExtResource("4_345w4")]
+[node name="to_chapter_2_1" parent="." instance=ExtResource("6_3ulw2")]
+position = Vector2(4484, 856)
+script = ExtResource("7_qve2g")
+next_level_scene = ExtResource("8_ljw6j")
+
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="to_chapter_2_1"]
+position = Vector2(-544, 758.5)
+shape = SubResource("RectangleShape2D_3ulw2")
+
+[node name="Player" parent="." instance=ExtResource("4_345w4")]
 z_index = 100
 z_as_relative = false
-position = Vector2(-7, -25)
+position = Vector2(731, 362)

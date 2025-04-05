@@ -15,6 +15,13 @@ var last_direction := \"front\"
 
 @onready var anim_sprite := $AnimatedSprite2D
 
+@onready var collision_shape := $CollisionShape2D  # adaptează calea dacă e diferit
+
+func _ready():
+	collision_shape.disabled = true  # dezactivăm coliziunea
+	await get_tree().create_timer(2.5).timeout
+	collision_shape.disabled = false  # o reactivăm după 5 secunde
+
 func _physics_process(delta):
 	direction = Vector2.ZERO
 
@@ -45,6 +52,7 @@ func _update_animation():
 		
 		last_direction = dir_str
 		anim_sprite.play(\"walk-\" + dir_str)
+		
 "
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_j5wjh"]

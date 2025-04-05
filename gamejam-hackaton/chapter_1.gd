@@ -11,7 +11,7 @@ extends Node2D
 # Dimensiunea zonei principale (unde se generează pereții, apa)
 @export var width: int = 128
 @export var height: int = 128
-@export var fill_percent: float = 25.0
+@export var fill_percent: float = 23.0
 
 # Raza cercului în care nu vrem pereți sau apă (rămâne ca la tine)
 @export var restricted_radius: float = 20.0
@@ -63,10 +63,52 @@ func _ready():
 	place_decor_prefabs()
 	place_water_prefabs()
 	place_wall_prefabs()
+	create_level_boundaries()
 
 # ----------------------------------------------------------------------------
 # GENEREAZĂ HARTA PRINCIPALĂ (map_data) - EXACT CA ÎN SCRIPTUL TĂU
 # ----------------------------------------------------------------------------
+
+func create_level_boundaries():
+	var tile_size = 16
+	var margin = 340  # cât să intrăm spre centru
+	var bounds = StaticBody2D.new()
+	bounds.name = "LevelBounds"
+	add_child(bounds)
+
+	var thickness = 16
+
+	var map_pixel_width = big_width * tile_size
+	var map_pixel_height = big_height * tile_size
+
+	# SUS
+	var top = CollisionShape2D.new()
+	top.shape = RectangleShape2D.new()
+	top.shape.extents = Vector2((map_pixel_width - margin * 2) / 2, thickness / 2)
+	top.position = Vector2(map_pixel_width / 2, margin - thickness / 2)
+	bounds.add_child(top)
+
+	# JOS
+	var bottom = CollisionShape2D.new()
+	bottom.shape = RectangleShape2D.new()
+	bottom.shape.extents = Vector2((map_pixel_width - margin * 2) / 2, thickness / 2)
+	bottom.position = Vector2(map_pixel_width / 2, map_pixel_height - margin + thickness / 2)
+	bounds.add_child(bottom)
+
+	# STÂNGA
+	var left = CollisionShape2D.new()
+	left.shape = RectangleShape2D.new()
+	left.shape.extents = Vector2(thickness / 2, (map_pixel_height - margin * 2) / 2)
+	left.position = Vector2((margin + 230) - thickness / 2, map_pixel_height / 2)
+	bounds.add_child(left)
+
+	# DREAPTA
+	var right = CollisionShape2D.new()
+	right.shape = RectangleShape2D.new()
+	right.shape.extents = Vector2(thickness / 2, (map_pixel_height - margin * 2) / 2)
+	right.position = Vector2(map_pixel_width - margin + thickness / 2, map_pixel_height / 2)
+	bounds.add_child(right)
+
 func generate_map():
 	randomize()
 	map_data.resize(width)
